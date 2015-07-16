@@ -1,0 +1,37 @@
+{
+  "name": "protoncms-formlib",
+  "version": "0.1.0",
+  "description": "ProtonCMS -- formlib that can generate forms and input widgets from isomorphic-schema definitions",
+  "repository" : { 
+      "type" : "git",
+      "url" : "https://github.com/jhsware/protoncms-formlib.git"
+  },
+  "main": "./lib/index.js",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "moment": "^2.8.4"
+  },
+  "peerDependencies": {
+    "react": "^0.13.0",
+    "protoncms-core": ">=0.1",
+    "component-registry": ">=0.1",
+    "isomorphic-schema": ">=0.1",
+    "react-formlib": ">=0.1"
+  },
+  "devDependencies": {
+    "del": "^1.1.0",
+    "expect.js": "~0.3.1",
+    "gulp": "^3.8.10",
+    "gulp-plumber": "^0.6.6",
+    "gulp-react": "~2.0.0",
+    "gulp-util": "^3.0.1",
+    "mocha": "~1.18.2",
+    "mocha-better-spec-reporter": "^1.1.1",
+    "react-tools": "~0.12.1"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --reporter mocha-better-spec-reporter"
+  },
+  "author": "Sebastian Ware",
+  "license": "Copyright Sebastian Ware"
+}
