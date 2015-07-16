@@ -15,8 +15,7 @@
     "react": "^0.13.0",
     "protoncms-core": ">=0.1",
     "component-registry": ">=0.1",
-    "isomorphic-schema": ">=0.1",
-    "react-formlib": ">=0.1"
+    "isomorphic-schema": ">=0.1"
   },
   "devDependencies": {
     "del": "^1.1.0",
