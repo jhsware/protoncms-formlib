@@ -11,7 +11,7 @@ var IProtonObject = require('protoncms-core').interfaces.IProtonObject;
 var IInputFieldWidget = require('protoncms-core').interfaces.IInputFieldWidget;
 var IAutoFormWidget = require('protoncms-core').interfaces.IAutoFormWidget;
 
-var FieldValidationMixin = require('../../formInputWidgets/FieldValidationMixin');
+var FieldValidationMixin = require('./mixins/FieldValidationMixin');
 
 /*
 
