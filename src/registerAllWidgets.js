@@ -1,5 +1,5 @@
 'use strict';
-var widgets = require('./adapters');
+var widgets = require('./formInputWidgets');
 var registry = require('protoncms-core').registry;
 
 // Registering adapters for form input widgets
