@@ -1,6 +1,6 @@
 {
   "name": "protoncms-formlib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ProtonCMS formlib -- generate forms and input widgets from isomorphic-schema definitions",
   "author": {
     "name": "Sebastian Ware",
