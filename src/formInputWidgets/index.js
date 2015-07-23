@@ -18,11 +18,9 @@ module.exports.adapters = {
     //SelectButtonGroup: require('./select_button_group'),
     DropDownAdapter: require('./drop_down').DropDownAdapter,
     MultiSelectAdapter: require('./multi_select').MultiSelectAdapter,
-    //DateField: require('./date_field'),
+    DateField: require('./date_field').DateInputAdapter,
     //SocialImageSelector: require('./social_image_selector'),
-    
-    //TextAreaField: require('./text_area_field'),
-    
+        
     ListInputAdapter: require('./list_field')
         
     //FieldError: require('./field_error'),
