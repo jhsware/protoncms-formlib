@@ -10,6 +10,8 @@ var createAdapter = require('component-registry').createAdapter;
 var IDateField = require('isomorphic-schema').interfaces.IDateField;
 var IInputFieldWidget = require('protoncms-core').interfaces.IInputFieldWidget;
 
+var Input = require('react-bootstrap').Input;
+
 var IntegerInputAdapter = createAdapter({
     implements: IInputFieldWidget,
     adapts: IDateField,
