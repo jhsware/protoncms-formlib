@@ -12,7 +12,7 @@ var IInputFieldWidget = require('protoncms-core').interfaces.IInputFieldWidget;
 
 var Input = require('react-bootstrap').Input;
 
-var IntegerInputAdapter = createAdapter({
+var DateInputAdapter = createAdapter({
     implements: IInputFieldWidget,
     adapts: IDateField,
     
