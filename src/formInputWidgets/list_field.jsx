@@ -12,7 +12,13 @@ var ListInputAdapter = createAdapter({
     adapts: IListField,
     
     inputType: 'dummy',
-    ReactComponent: (<div>This is a dummy field of type IListField</div>),
+    ReactComponent: React.createClass({
+        render: function () {
+            return (
+                <div>This is a dummy field of type IListField</div>
+            );
+        }
+    }),
     didUpdate: function (fieldKey, e, onChange) {
         // var value = this.context.fromString(e.target.value);
         // onChange(fieldKey, value);
