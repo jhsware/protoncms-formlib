@@ -67,23 +67,39 @@ var FormGenerator = React.createClass({
         var formSchema = this.props.formSchema;
         
         // Validate input
-        var formErrors = formSchema.validate(context, {
-            skipInvariants: true
-        });
+        if (this.props.hasOwnProperty('DoNotValidate')) {
+            var formErrors;
+        } else {
+            // Always skip invariants during form entry (we haven't filled out all the fields...)
+            var tmpOpts = {
+                skipInvariants: true
+            };
+            
+            // If we are only showing a limited set of fields, only validate them
+            if (Array.isArray(this.props.onlyFields)) {
+                tmpOpts['selectedFields'] = this.props.onlyFields.filter(function (fieldName) {
+                    return formSchema._fields.hasOwnProperty(fieldName);
+                });
+            };
+            // TODO: Do the same as with onlyFields if we have chosen to excludeFields
+            
+            // Now perform validation:
+            var formErrors = formSchema.validate(context, tmpOpts);
         
-        // Insert invariant errors for each field
-        formErrors = formErrors || {};
-        formErrors.fieldErrors = formErrors.fieldErrors || {};
-        for (var key in this.props.invariantErrors) {
-            var tmpErr = this.props.invariantErrors[key];
-            for (var i in tmpErr.fields) {
-                var fieldKey = tmpErr.fields[i];
-                formErrors.fieldErrors[fieldKey] = {
-                    type: 'invariant_error',
-                    message: tmpErr.message
-                };
-            }
-        };
+            // Insert invariant errors for each field
+            formErrors = formErrors || {};
+            formErrors.fieldErrors = formErrors.fieldErrors || {};
+            for (var key in this.props.invariantErrors) {
+                var tmpErr = this.props.invariantErrors[key];
+                for (var i in tmpErr.fields) {
+                    var fieldKey = tmpErr.fields[i];
+                    formErrors.fieldErrors[fieldKey] = {
+                        type: 'invariant_error',
+                        message: tmpErr.message
+                    };
+                }
+            };            
+        }
         
         // Merge form errors with serverErrors (the latter overwriting the former on conflict)
         if (this.props.serverErrors) {
@@ -134,7 +150,7 @@ var FormGenerator = React.createClass({
                     <CustomWidget
                         
                         name={fieldKey} 
-                        context={widgetContext} 
+                        context={widgetContext}
                         onChange={this.didUpdate} 
                         fieldValidator={fieldValidator}
                         serverErrors={fieldError}
@@ -191,10 +207,10 @@ var FormGenerator = React.createClass({
             
             if (ia.inputType === 'text') {
                 fieldValue = fieldValidator.toFormattedString(fieldValue);
-            };
+            };            
             
             return (
-                <div key={"row-" + fieldKey} className={this.props.formRowClassName || "edit-form-row"}>
+                <div key={"row-" + fieldKey} className={(this.props.formRowClassName || "edit-form-row") + " " + fieldKey + "-widget"}>
                     <InputWidget
                         
                         type={ia.inputType}
@@ -216,11 +232,11 @@ var FormGenerator = React.createClass({
                             ia.didUpdate(fieldKey, e, this.didUpdate);
                         }.bind(this)}
                         
-                        {...tagAttributes}>{ia.getOptionsEls && ia.getOptionsEls()}</InputWidget>
+                        {...tagAttributes}>{ia.getOptionsEls && ia.getOptionsEls(fieldValue)}</InputWidget>
                 </div>
             )
         }, this); // << Binding FormGenerator to this in loop
-
+        
         return (
             <div className={this.props.className || "edit-form"}>
 

@@ -20,8 +20,8 @@ var CustomInputWidget = React.createClass({
     
     propTypes: {
         property: React.PropTypes.string.isRequired,
-        widget: React.PropTypes.func.isRequired,
-        context: React.PropTypes.node
+        widget: React.PropTypes.func.isRequired
+        // context: -- any type of input data
     },
     
     render: function() {}

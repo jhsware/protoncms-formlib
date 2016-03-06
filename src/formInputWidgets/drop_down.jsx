@@ -21,17 +21,36 @@ var DropDownAdapter = createAdapter({
     inputType: 'select',
     ReactComponent: Input,
     didUpdate: function (fieldKey, e, onChange) {
-        var value = this.context.fromString(e.target.value);
+        var value = (this.context.placeholder == e.target.value ? undefined : this.context.fromString(e.target.value));
         onChange(fieldKey, value);
     },
-    getOptionsEls: function () {
+    getOptionsEls: function (value) {
         var outpEls = this.context.options.map(function (option, keyIndex) {
+            // Make sure the correct option is marked as selected...
+            if (value === option.name) {
+                var selected = {
+                    selected: true
+                }
+            } else {
+                var selected = {};
+            }
+            
+            
             return (
-                <option key={'option-' + keyIndex} value={option.name}>{option.title}</option>
+                <option key={'option-' + keyIndex} value={option.name} {...selected}>{option.title}</option>
             )
         });
+        
+        // ...and if nothing is selected, select placeholder
+        if (!value) {
+            var selected = {
+                selected: true
+            }
+        } else {
+            var selected = {};
+        }
         outpEls.unshift(
-            <option key='option-placeholder' value={undefined}>{this.context.placeholder}</option>
+            <option key='option-placeholder' value={undefined} {...selected}>{this.context.placeholder}</option>
         );
         return outpEls;
     }
