@@ -21,7 +21,9 @@ module.exports.adapters = {
     DateField: require('./date_field').DateInputAdapter,
     //SocialImageSelector: require('./social_image_selector'),
         
-    ListInputAdapter: require('./list_field')
+    ListInputAdapter: require('./list_field'),
+    
+    ObjectInputAdapter: require('./object_field').ObjectInputAdapter,
         
     //FieldError: require('./field_error'),
     //InvariantErrors: require('./invariant_errors'),

@@ -10,7 +10,7 @@ var createAdapter = require('component-registry').createAdapter;
 var IObjectField = require('isomorphic-schema').interfaces.IObjectField;
 var IInputFieldWidget = require('protoncms-core').interfaces.IInputFieldWidget;
 
-var EmailInputAdapter = createAdapter({
+var ObjectInputAdapter = createAdapter({
     implements: IInputFieldWidget,
     adapts: IObjectField,
     
@@ -23,4 +23,4 @@ var EmailInputAdapter = createAdapter({
     }
 });
 
-module.exports.EmailInputAdapter = EmailInputAdapter;
+module.exports.ObjectInputAdapter = ObjectInputAdapter;
