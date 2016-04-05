@@ -16,7 +16,7 @@ var ObjectInputAdapter = createAdapter({
     
     ReactComponent: function () {
         var ia = registry.getAdapter(this.context.interface, IInputFieldWidget);
-        var InputWidget = (typeof ia.ReactComponent === "function" ? ia.ReactComponent() : ia.ReactComponent);
+        return (typeof ia.ReactComponent === "function" ? ia.ReactComponent() : ia.ReactComponent);
     },
     didUpdate: function (fieldKey, e, onChange) {
         onChange(fieldKey, e);
