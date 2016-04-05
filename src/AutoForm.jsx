@@ -183,7 +183,7 @@ var FormGenerator = React.createClass({
             
             // Get the general field input widget adapter
             var ia = registry.getAdapter(fieldValidator, IInputFieldWidget);
-            var InputWidget = (typeof ia.ReactComponent === "function" ? ia.ReactComponent() : ia.ReactComponent);
+            var InputWidget = (ia.getReactComponent ? ia.getReactComponent() : ia.ReactComponent);
 
             // Some nice help for debugging...
             if (typeof InputWidget === "undefined") {
