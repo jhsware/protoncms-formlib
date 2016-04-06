@@ -1,7 +1,6 @@
 'use strict';
 var registry = require('protoncms-core').registry;
 var React = require('react');
-var $ = require('jquery');
 
 var createUtility = require('component-registry').createUtility;
 
@@ -26,52 +25,36 @@ var DropArea = React.createClass({
         }
     },
 
-    onDragEnter: function(e){
+    didDragEnter: function(e){
         e.preventDefault()
-        /*if (this.state.inDragCount == 0){
-            console.log("[DropArea] onDragEnter", e.target);
-        }*/
         this.setState({
-            inDragCount: (state.inDragCount + 1)
+            inDragCount: (this.state.inDragCount + 1)
         })
     },
 
-    onDragLeave: function(e) {
+    didDragLeave: function(e) {
         this.setState({
-            inDragCount: (state.inDragCount - 1)
+            inDragCount: (this.state.inDragCount - 1)
         })
-        /*if (this.state.inDragCount == 0) {
-            console.log("[DropArea] onDragLeave");
-        }*/
     },
 
-    onDrop: function(e) {
+    didDrop: function(e) {
         e.preventDefault()
 
         this.setState({
             inDragCount: 0
         });
 
-        var file = e.dataTransfer.files[0];
-        console.log("[DropArea] file:", file.name);
-        this.props.onDrop(file);
+        var files = e.dataTransfer.files;
+        this.props.onDrop(files);
     },
 
-    onDragOver: function(e){
+    didDragOver: function(e){
         e.preventDefault();
     },
-
-    componentDidMount: function() {
-        var $el = $(this.refs['area'].getDOMNode());
-        $el.on('dragenter', this.onDragEnter.bind(this));
-        $el.on('dragleave', this.onDragLeave.bind(this));
-        $el.on('dragover', this.onDragOver.bind(this));
-        $el.on('drop', this.onDrop.bind(this));
-    },
     
-    componentWillUnmount: function () {
-        var $el = $(this.refs['area'].getDOMNode());
-        $el.off();
+    didClick: function (e) {
+        this.props.onClick && this.props.onClick(e);
     },
     
     render: function() {
@@ -79,8 +62,17 @@ var DropArea = React.createClass({
         if (this.state.inDragCount > 0) {
             classes.push("DropArea--dragging")
         }
+        if (this.props.className) {
+            classes.push(this.props.className)
+        };
+        
         return (
-            <div className={classes.join(' ')} ref="area">
+            <div className={classes.join(' ')} ref="area" 
+                onDragEnter={this.didDragEnter}
+                onDragLeave={this.didDragLeave}
+                onDragOver={this.didDragOver}
+                onDrop={this.didDrop}
+                onClick={this.didClick} >
                 {this.props.children}
                 {this.state.inDragCount > 0 && <DropAreaOverlay />}
             </div>
