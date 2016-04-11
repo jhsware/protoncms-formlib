@@ -1,7 +1,7 @@
 'use strict';
 var registry = require('protoncms-core').registry;
-var React = require('react/addons');
-var ReactTransitionGroup = React.addons.TransitionGroup;
+var React = require('react');
+var ReactTransitionGroup = require('react-addons-transition-group');
 var $ = require('jquery');
 
 var createUtility = require('component-registry').createUtility;
