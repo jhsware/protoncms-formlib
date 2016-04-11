@@ -21,22 +21,19 @@
   },
   "main": "./index.js",
   "browserify": {
-    "transform": [
-      [
-        "reactify",
-        {
-          "harmony": true
-        }
-      ]
-    ]
+    "transform": [[ "babelify", { "presets": ["react"] } ]]
   },
   "dependencies": {
   },
   "peerDependencies": {
+    "babel-core": ">=6.7.5",
+    "babel-preset-react": ">=6.5.0",
+      
     "moment": "^2.8.4",
     "lodash": "^2.4.1",
-    "react": "^0.13.0",
-    "react-bootstrap": ">=0.21.2",
+    "react": ">=0.15.1",
+    "react-addons-transition-group": "~15.0.1",
+    "react-bootstrap": ">=0.28.5",
     "jquery": ">=2.1.3",
     "protoncms-core": ">=0.1",
     "component-registry": ">=0.1",
@@ -44,16 +41,6 @@
     
   },
   "devDependencies": {
-    "react-tools": "~0.12.1",
-    
-    "gulp": "^3.8.10",
-    "gulp-react": "~3.0.1",
-    "gulp-plumber": "~1.0.1",
-    "del": "^1.1.0",
-    
-    "mocha": "~1.18.2",
-    "expect.js": "~0.3.1",
-    "mocha-better-spec-reporter": "^1.1.1"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --reporter mocha-better-spec-reporter"
