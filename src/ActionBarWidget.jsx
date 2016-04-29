@@ -2,6 +2,9 @@
 var registry = require('protoncms-core').registry;
 var React = require('react');
 var ReactTransitionGroup = require('react-addons-transition-group');
+var ReactDOM = require('react-dom');
+
+var cx = require('classnames');
 var $ = require('jquery');
 
 var createUtility = require('component-registry').createUtility;
@@ -57,7 +60,7 @@ var ActionBar = React.createClass({
         
         // Ok so we haven't done this since last frame... let's go
         this.scrollAnimationFrame = window.requestAnimationFrame(function() {
-            var $el = $(this.refs['theBar'].getDOMNode());
+            var $el = $(ReactDOM.findDOMNode(this.refs['theBar']));
             var barBottom = $el.offset().top + $el.outerHeight();
 
             var stickToBottom = (barBottom - window.scrollY) > window.innerHeight;
@@ -89,7 +92,6 @@ var ActionBar = React.createClass({
     },
     
     renderStickyBar: function () {
-        var cx = React.addons.classSet;
         
         var stickyActionBarCls = {
             "form-actionbar": true,

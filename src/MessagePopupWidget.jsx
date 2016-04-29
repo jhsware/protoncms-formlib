@@ -1,6 +1,8 @@
 "use strict";
 var registry = require('protoncms-core').registry;
-var React = require('react')
+var React = require('react');
+var ReactDOM = require('react-dom');
+var cx = require('classnames');
 var $ = require('jquery')
 
 var createUtility = require('component-registry').createUtility;
@@ -10,7 +12,7 @@ var IMessagePopupWidget = require('protoncms-core').interfaces.IMessagePopupWidg
 var MessagePopup = React.createClass({
     
     componentWillEnter: function (done) {
-        var $el = $(this.refs['this'].getDOMNode());        
+        var $el = $(ReactDOM.findDOMNode(this.refs['this']));
         $el.addClass('animate-in');
         setTimeout(function () {
             $el.addClass('form-actionbar-message-popup-visible');
@@ -23,7 +25,7 @@ var MessagePopup = React.createClass({
     },
     
     componentWillLeave: function (done) {
-        var $el = $(this.refs['this'].getDOMNode());
+        var $el = $(ReactDOM.findDOMNode(this.refs['this']));
         
         var finished = function () {
             $el.off( 'transitionend');
@@ -47,7 +49,7 @@ var MessagePopup = React.createClass({
     componentDidMount: function () {
         /* This is just an extra activation because the sticky bar won't perform the animation
            if it isn't visible */
-        var $el = $(this.refs['this'].getDOMNode());
+        var $el = $(ReactDOM.findDOMNode(this.refs['this']));
         setTimeout(function () {
             $el.addClass('form-actionbar-message-popup-visible');
         }, 1500)
@@ -55,9 +57,6 @@ var MessagePopup = React.createClass({
         
     render: function () {
         // TODO: Form generation
-        
-        var cx = React.addons.classSet;
-        
         var popupCls = {
             "form-actionbar-message-popup": true,
             "form-actionbar-message-popup-inline": this.props.hasOwnProperty('renderInline')

@@ -8,6 +8,7 @@
 
 var React = require('react');
 var ReactTransitionGroup = require('react-addons-transition-group');
+var ReactDOM = require('react-dom');
 
 var $ = require('jquery');
 
@@ -19,7 +20,7 @@ var Button = require('react-bootstrap').Button;
 var Spinner = React.createClass({
     
     componentWillEnter: function (done) {
-        var $el = $(this.refs['this'].getDOMNode());
+        var $el = $(ReactDOM.findDOMNode(this.refs['this']));
         $el.addClass('animate-in');
         setTimeout(function () {
             $el.addClass('icon-spinner-visible'); 
@@ -32,7 +33,7 @@ var Spinner = React.createClass({
     },
     
     componentWillLeave: function (done) {
-        var $el = $(this.refs['this'].getDOMNode());
+        var $el = $(ReactDOM.findDOMNode(this.refs['this']));
         $el.on( 'transitionend', function() {
             $el.off( 'transitionend');
             done();
