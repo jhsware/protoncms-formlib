@@ -26,7 +26,7 @@
   "dependencies": {
   },
   "peerDependencies": {
-    "babel-core": ">=6.7.5",
+    "babel-core": ">=6.5.2",
     "babel-preset-react": ">=6.5.0",
       
     "classnames": ">=2.2.3",
