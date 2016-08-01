@@ -24,6 +24,7 @@ module.exports.adapters = {
     ListInputAdapter: require('./list_field'),
     
     ObjectInputAdapter: require('./object_field').ObjectInputAdapter,
+    ObjectRelationInputAdapter: require('./object_relation_field').ObjectRelationInputAdapter,
         
     //FieldError: require('./field_error'),
     //InvariantErrors: require('./invariant_errors'),
