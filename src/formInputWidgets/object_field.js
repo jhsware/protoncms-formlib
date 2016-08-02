@@ -5,6 +5,7 @@
     adapter registry.
 
 */
+var registry = require('protoncms-core').registry;
 var createAdapter = require('component-registry').createAdapter;
 
 var IObjectField = require('isomorphic-schema').interfaces.IObjectField;
