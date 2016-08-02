@@ -215,6 +215,7 @@ var FormGenerator = React.createClass({
                         
                         type={ia.inputType}
                         value={fieldValue}
+                        fieldValidator={fieldValidator}
                         
                         {...widgetValidationProps}
                         
