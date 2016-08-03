@@ -116,11 +116,42 @@ var ListInputAdapter = createAdapter({
             }; 
             
             return (
-                <div key={"row-" + index} className={(this.props.formRowClassName || "edit-form-row")}>
-                    <div>
-                        {"Item " + index}
+                
+                <SubFormWidget
+    
+                    type={ia.inputType}
+                    value={fieldValue}
+                    fieldValidator={fieldValidator}
+    
+                    {...widgetValidationProps}
+    
+                    placeholder={fieldValidator.placeholder}
+                    label={!this.props.hasOwnProperty('hideLabels') && fieldValidator.label}
+                    addonAfter={fieldValidator.prefix}
+                    addonBefore={fieldValidator.suffix}
+                    hasFeedback
+    
+                    onKeyDown={function (e) {
+                        // this.didKeyDown(fieldKey, e);
+                    }.bind(this)}
+    
+                    onChange={function (e) {
+                        ia.didUpdate(fieldKey, e, this.didChange);
+                    }.bind(this)}
+    
+                    {...tagAttributes}>{ia.getOptionsEls && ia.getOptionsEls(fieldValue)}</SubFormWidget>
+                            
+            )
+        },
+        
+        renderInputWidget: function () {
+            var rowEls = this.props.value.map(function (item, index) {
+                return (
+                    <div key={"row-" + index} className={(this.props.formRowClassName || "EditSubForm")}>
                         
-                        <div className="float-right">
+                        { this.renderRow(item, index) }
+                        
+                        <div className="ListField-DeleteRowBtn">
                             <Button
                                 bsStyle="danger"
                                 onClick={function (e) {
@@ -129,43 +160,6 @@ var ListInputAdapter = createAdapter({
                                 Remove
                             </Button>
                         </div>
-                    
-                    </div>
-
-                
-                    <SubFormWidget
-            
-                        type={ia.inputType}
-                        value={fieldValue}
-                        fieldValidator={fieldValidator}
-            
-                        {...widgetValidationProps}
-            
-                        placeholder={fieldValidator.placeholder}
-                        label={!this.props.hasOwnProperty('hideLabels') && fieldValidator.label}
-                        addonAfter={fieldValidator.prefix}
-                        addonBefore={fieldValidator.suffix}
-                        hasFeedback
-            
-                        onKeyDown={function (e) {
-                            // this.didKeyDown(fieldKey, e);
-                        }.bind(this)}
-            
-                        onChange={function (e) {
-                            ia.didUpdate(fieldKey, e, this.didChange);
-                        }.bind(this)}
-            
-                        {...tagAttributes}>{ia.getOptionsEls && ia.getOptionsEls(fieldValue)}</SubFormWidget>
-                            
-                </div>
-            )
-        },
-        
-        renderInputWidget: function () {
-            var rowEls = this.props.value.map(function (item, index) {
-                return (
-                    <div key={"row_" + index} className="">
-                        { this.renderRow(item, index) }
                     </div>
                 )
             }.bind(this))
@@ -182,18 +176,19 @@ var ListInputAdapter = createAdapter({
         },
         
         render: function () {
-            var cl = ["InputFieldWidget", "has-feedback", "form-group"];
+            var cl = ["ListFieldWidget", "has-feedback", "form-group"];
             if (this.props.bsStyle) {
                 cl.push("has-" + this.props.bsStyle);
             }
             
             return (
                 <div className={cl.join(' ')} >
-                    {this.renderLabel()}
-                    
+                    <div>
+                        <div className="ListFieldWidget-Label">{this.renderLabel()}</div>
+                        <div className="ListFieldWidget-Help">{this.props.help && <span className="help-block">{this.props.help}</span>}</div>
+                    </div>
                     {this.renderInputWidget()}
                     
-                    {this.props.help && <span className="help-block">{this.props.help}</span>}
                 </div>
             );
         }
