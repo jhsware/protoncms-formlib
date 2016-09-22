@@ -23,10 +23,6 @@
   "browserify": {
     "transform": [[ "babelify", { "presets": ["react"] } ]]
   },
-  "babel": {
-    "presets": ["react"],
-    "ignore": false
-  },
   "dependencies": {
   },
   "peerDependencies": {
