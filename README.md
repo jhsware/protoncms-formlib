@@ -27,3 +27,12 @@ How to use:
                            options={{...}} />           // Options to pass to the custom widget
         
     </FormWidget>
+    
+### Building the package ###
+
+Just run:
+
+```
+$ npm install
+$ npm run build 
+```

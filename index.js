@@ -1,12 +1,12 @@
 'use strict';
-require('./src/AutoForm');
-require('./src/ActionBarWidget');
-require('./src/MessagePopupWidget');
-require('./src/DropArea');
+require('./dist/AutoForm');
+require('./dist/ActionBarWidget');
+require('./dist/MessagePopupWidget');
+require('./dist/DropArea');
 
-module.exports.form_field_widgets = require('./src/formInputWidgets');
-module.exports.registerAllWidgets = require('./src/registerAllWidgets');
-module.exports.CustomInputWidget = require('./src/CustomInputWidget');
+module.exports.form_field_widgets = require('./dist/formInputWidgets');
+module.exports.registerAllWidgets = require('./dist/registerAllWidgets');
+module.exports.CustomInputWidget = require('./dist/CustomInputWidget');
 module.exports.mixins = {
-    FieldValidationMixin: require('./src/mixins/FieldValidationMixin')
+    FieldValidationMixin: require('./dist/mixins/FieldValidationMixin')
 };
